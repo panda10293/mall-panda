@@ -45,7 +45,7 @@ spring:
     redis:
       database: 0
       port: 6379
-      host: localhost
+      host: 172.16.94.128
       password:
 secure:
   ignore:
@@ -118,4 +118,9 @@ sa-token:
   token-prefix: Bearer
   # 是否打印banner
   is-print: false
-
+logging:
+  level:
+    root: info
+    com.macro.mall: debug
+logstash:
+  host: 172.16.94.128

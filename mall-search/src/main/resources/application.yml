@@ -5,7 +5,7 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   datasource:
-    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:mysql://172.16.94.128:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: root
     druid:
@@ -22,7 +22,7 @@ spring:
       repositories:
         enabled: true
   elasticsearch:
-    uris: localhost:9200
+    uris: 172.16.94.128:9200
 mybatis:
   mapper-locations:
     - classpath:dao/*.xml
@@ -57,6 +57,11 @@ springdoc:
   group-configs:
     - group: 'mall-search'
       packages-to-scan: com.macro.mall.search.controller
-
+logging:
+  level:
+    root: info
+    com.macro.mall: debug
+logstash:
+  host: 172.16.94.128
 
 
