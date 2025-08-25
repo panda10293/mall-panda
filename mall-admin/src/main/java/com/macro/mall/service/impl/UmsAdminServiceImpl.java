@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 /**
  * UmsAdminService实现类
- * Created by macro on 2018/4/26.
+ * Created by macro on 2025/4/26.
  */
 @Service
 public class UmsAdminServiceImpl implements UmsAdminService {
@@ -87,17 +87,17 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public SaTokenInfo login(String username, String password) {
-        if(StrUtil.isEmpty(username)||StrUtil.isEmpty(password)){
+        if (StrUtil.isEmpty(username) || StrUtil.isEmpty(password)) {
             Asserts.fail("用户名或密码不能为空！");
         }
         UmsAdmin admin = getAdminByUsername(username);
-        if(admin==null){
+        if (admin == null) {
             Asserts.fail("找不到该用户！");
         }
         if (!BCrypt.checkpw(password, admin.getPassword())) {
             Asserts.fail("密码不正确！");
         }
-        if(admin.getStatus()!=1){
+        if (admin.getStatus() != 1) {
             Asserts.fail("该账号已被禁用！");
         }
         // 登录校验成功后，一行代码实现登录
@@ -110,7 +110,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         List<String> permissionList = resourceList.stream().map(item -> item.getId() + ":" + item.getName()).toList();
         userDto.setPermissionList(permissionList);
         // 将用户信息存储到Session中
-        StpUtil.getSession().set(AuthConstant.STP_ADMIN_INFO,userDto);
+        StpUtil.getSession().set(AuthConstant.STP_ADMIN_INFO, userDto);
         // 获取当前登录用户Token信息
         SaTokenInfo saTokenInfo = StpUtil.getTokenInfo();
 //        updateLoginTimeByUsername(username);
@@ -122,7 +122,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      * 添加登录记录
      */
     private void insertLoginLog(UmsAdmin admin) {
-        if(admin==null) return;
+        if (admin == null) return;
         UmsAdminLoginLog loginLog = new UmsAdminLoginLog();
         loginLog.setAdminId(admin.getId());
         loginLog.setCreateTime(new Date());
@@ -164,14 +164,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     public int update(Long id, UmsAdmin admin) {
         admin.setId(id);
         UmsAdmin rawAdmin = adminMapper.selectByPrimaryKey(id);
-        if(rawAdmin.getPassword().equals(admin.getPassword())){
+        if (rawAdmin.getPassword().equals(admin.getPassword())) {
             //与原加密密码相同的不需要修改
             admin.setPassword(null);
-        }else{
+        } else {
             //与原加密密码不同的需要加密修改
-            if(StrUtil.isEmpty(admin.getPassword())){
+            if (StrUtil.isEmpty(admin.getPassword())) {
                 admin.setPassword(null);
-            }else{
+            } else {
                 admin.setPassword(BCrypt.hashpw(admin.getPassword()));
             }
         }
@@ -220,19 +220,19 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public int updatePassword(UpdateAdminPasswordParam param) {
-        if(StrUtil.isEmpty(param.getUsername())
-                ||StrUtil.isEmpty(param.getOldPassword())
-                ||StrUtil.isEmpty(param.getNewPassword())){
+        if (StrUtil.isEmpty(param.getUsername())
+                || StrUtil.isEmpty(param.getOldPassword())
+                || StrUtil.isEmpty(param.getNewPassword())) {
             return -1;
         }
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(param.getUsername());
         List<UmsAdmin> adminList = adminMapper.selectByExample(example);
-        if(CollUtil.isEmpty(adminList)){
+        if (CollUtil.isEmpty(adminList)) {
             return -2;
         }
         UmsAdmin umsAdmin = adminList.get(0);
-        if(!BCrypt.checkpw(param.getOldPassword(),umsAdmin.getPassword())){
+        if (!BCrypt.checkpw(param.getOldPassword(), umsAdmin.getPassword())) {
             return -3;
         }
         umsAdmin.setPassword(BCrypt.hashpw(param.getNewPassword()));
@@ -251,6 +251,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
         return admin;
     }
+
     @Override
     public void logout() {
         //先清空缓存

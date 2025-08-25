@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 /**
  * 后台用户管理
- * Created by macro on 2018/4/26.
+ * Created by nipeng on 2025/4/26.
  */
 @Controller
 @Tag(name = "UmsAdminController", description = "后台用户管理")
@@ -55,13 +55,13 @@ public class UmsAdminController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult login(@Validated @RequestBody UmsAdminLoginParam umsAdminLoginParam) {
-        SaTokenInfo saTokenInfo  = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
-        if (saTokenInfo  == null) {
+        SaTokenInfo saTokenInfo = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
+        if (saTokenInfo == null) {
             return CommonResult.validateFailed("用户名或密码错误");
         }
         Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", saTokenInfo.getTokenValue() );
-        tokenMap.put("tokenHead", tokenHead+" ");
+        tokenMap.put("token", saTokenInfo.getTokenValue());
+        tokenMap.put("tokenHead", tokenHead + " ");
         return CommonResult.success(tokenMap);
     }
 
@@ -75,9 +75,9 @@ public class UmsAdminController {
         data.put("menus", roleService.getMenuList(umsAdmin.getId()));
         data.put("icon", umsAdmin.getIcon());
         List<UmsRole> roleList = adminService.getRoleList(umsAdmin.getId());
-        if(CollUtil.isNotEmpty(roleList)){
+        if (CollUtil.isNotEmpty(roleList)) {
             List<String> roles = roleList.stream().map(UmsRole::getName).collect(Collectors.toList());
-            data.put("roles",roles);
+            data.put("roles", roles);
         }
         return CommonResult.success(data);
     }
@@ -151,10 +151,10 @@ public class UmsAdminController {
     @Operation(summary = "修改帐号状态")
     @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id,@RequestParam(value = "status") Integer status) {
+    public CommonResult updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(status);
-        int count = adminService.update(id,umsAdmin);
+        int count = adminService.update(id, umsAdmin);
         if (count > 0) {
             return CommonResult.success(count);
         }

@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * 搜索商品管理Controller
- * Created by macro on 2018/6/19.
+ * Created by nipeng on 2025/6/19.
  */
 @Controller
 @Tag(name = "EsProductController", description = "搜索商品管理")
@@ -75,7 +75,7 @@ public class EsProductController {
     }
 
     @Operation(summary = "综合搜索、筛选、排序")
-    @Parameter(name = "sort", description = "排序字段:0->按相关度；1->按新品；2->按销量；3->价格从低到高；4->价格从高到低", in = ParameterIn.QUERY, schema = @Schema(type = "integer",defaultValue = "0",allowableValues = {"0","1","2","3","4"}))
+    @Parameter(name = "sort", description = "排序字段:0->按相关度；1->按新品；2->按销量；3->价格从低到高；4->价格从高到低", in = ParameterIn.QUERY, schema = @Schema(type = "integer", defaultValue = "0", allowableValues = {"0", "1", "2", "3", "4"}))
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<CommonPage<EsProduct>> search(@RequestParam(required = false) String keyword,

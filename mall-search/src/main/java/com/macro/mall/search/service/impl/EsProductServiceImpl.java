@@ -90,7 +90,7 @@ public class EsProductServiceImpl implements EsProductService {
     }
 
     @Override
-    public Page<EsProduct> search(String keyword, Long brandId, Long productCategoryId, Integer pageNum, Integer pageSize,Integer sort) {
+    public Page<EsProduct> search(String keyword, Long brandId, Long productCategoryId, Integer pageNum, Integer pageSize, Integer sort) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         NativeQueryBuilder nativeQueryBuilder = new NativeQueryBuilder();
         //分页
@@ -132,16 +132,16 @@ public class EsProductServiceImpl implements EsProductService {
             nativeQueryBuilder.withQuery(builder -> builder.functionScore(functionScoreQueryBuilder.build()));
         }
         //排序
-        if(sort==1){
+        if (sort == 1) {
             //按新品从新到旧
             nativeQueryBuilder.withSort(Sort.by(Sort.Order.desc("id")));
-        }else if(sort==2){
+        } else if (sort == 2) {
             //按销量从高到低
             nativeQueryBuilder.withSort(Sort.by(Sort.Order.desc("sale")));
-        }else if(sort==3){
+        } else if (sort == 3) {
             //按价格从低到高
             nativeQueryBuilder.withSort(Sort.by(Sort.Order.asc("price")));
-        }else if(sort==4){
+        } else if (sort == 4) {
             //按价格从高到低
             nativeQueryBuilder.withSort(Sort.by(Sort.Order.desc("price")));
         }
@@ -150,11 +150,11 @@ public class EsProductServiceImpl implements EsProductService {
         NativeQuery nativeQuery = nativeQueryBuilder.build();
         LOGGER.info("DSL:{}", nativeQuery.getQuery().toString());
         SearchHits<EsProduct> searchHits = elasticsearchTemplate.search(nativeQuery, EsProduct.class);
-        if(searchHits.getTotalHits()<=0){
-            return new PageImpl<>(ListUtil.empty(),pageable,0);
+        if (searchHits.getTotalHits() <= 0) {
+            return new PageImpl<>(ListUtil.empty(), pageable, 0);
         }
         List<EsProduct> searchProductList = searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
-        return new PageImpl<>(searchProductList,pageable,searchHits.getTotalHits());
+        return new PageImpl<>(searchProductList, pageable, searchHits.getTotalHits());
     }
 
     @Override
@@ -171,7 +171,7 @@ public class EsProductServiceImpl implements EsProductService {
             //分页
             nativeQueryBuilder.withPageable(pageable);
             //用于过滤掉相同的商品
-            nativeQueryBuilder.withFilter(QueryBuilders.bool(build -> build.mustNot(QueryBuilders.term(b->b.field("id").value(id)))));
+            nativeQueryBuilder.withFilter(QueryBuilders.bool(build -> build.mustNot(QueryBuilders.term(b -> b.field("id").value(id)))));
             //根据商品标题、品牌、分类进行搜索
             List<FunctionScore> functionScoreList = new ArrayList<>();
             functionScoreList.add(new FunctionScore.Builder()
@@ -202,11 +202,11 @@ public class EsProductServiceImpl implements EsProductService {
             NativeQuery nativeQuery = nativeQueryBuilder.build();
             LOGGER.info("DSL:{}", nativeQuery.getQuery().toString());
             SearchHits<EsProduct> searchHits = elasticsearchTemplate.search(nativeQuery, EsProduct.class);
-            if(searchHits.getTotalHits()<=0){
-                return new PageImpl<>(ListUtil.empty(),pageable,0);
+            if (searchHits.getTotalHits() <= 0) {
+                return new PageImpl<>(ListUtil.empty(), pageable, 0);
             }
             List<EsProduct> searchProductList = searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
-            return new PageImpl<>(searchProductList,pageable,searchHits.getTotalHits());
+            return new PageImpl<>(searchProductList, pageable, searchHits.getTotalHits());
         }
         return new PageImpl<>(ListUtil.empty());
     }
@@ -215,24 +215,24 @@ public class EsProductServiceImpl implements EsProductService {
     public EsProductRelatedInfo searchRelatedInfo(String keyword) {
         NativeQueryBuilder nativeQueryBuilder = new NativeQueryBuilder();
         //搜索条件
-        if(StrUtil.isEmpty(keyword)){
+        if (StrUtil.isEmpty(keyword)) {
             nativeQueryBuilder.withQuery(QueryBuilders.matchAll(builder -> builder));
-        }else{
-            nativeQueryBuilder.withQuery(QueryBuilders.multiMatch(builder -> builder.fields("name","subTitle","keywords").query(keyword)));
+        } else {
+            nativeQueryBuilder.withQuery(QueryBuilders.multiMatch(builder -> builder.fields("name", "subTitle", "keywords").query(keyword)));
         }
         //聚合搜索品牌名称
-        nativeQueryBuilder.withAggregation("brandNames",AggregationBuilders.terms(builder -> builder.field("brandName").size(10)));
+        nativeQueryBuilder.withAggregation("brandNames", AggregationBuilders.terms(builder -> builder.field("brandName").size(10)));
         //聚合搜索分类名称
-        nativeQueryBuilder.withAggregation("productCategoryNames",AggregationBuilders.terms(builder -> builder.field("productCategoryName").size(10)));
+        nativeQueryBuilder.withAggregation("productCategoryNames", AggregationBuilders.terms(builder -> builder.field("productCategoryName").size(10)));
         //聚合搜索商品属性，去除type=0的属性
         Aggregation aggregation = new Aggregation.Builder().nested(builder -> builder.path("attrValueList"))
-                .aggregations("productAttrs",new Aggregation.Builder()
-                        .filter(b->b.term(a->a.field("attrValueList.type").value("1")))
-                        .aggregations("attrIds",new Aggregation.Builder().terms(b->b.field("attrValueList.productAttributeId").size(10))
-                                .aggregations("attrValues",new Aggregation.Builder().terms(b->b.field("attrValueList.value").size(10)).build())
-                                .aggregations("attrNames",new Aggregation.Builder().terms(b->b.field("attrValueList.name").size(10)).build())
+                .aggregations("productAttrs", new Aggregation.Builder()
+                        .filter(b -> b.term(a -> a.field("attrValueList.type").value("1")))
+                        .aggregations("attrIds", new Aggregation.Builder().terms(b -> b.field("attrValueList.productAttributeId").size(10))
+                                .aggregations("attrValues", new Aggregation.Builder().terms(b -> b.field("attrValueList.value").size(10)).build())
+                                .aggregations("attrNames", new Aggregation.Builder().terms(b -> b.field("attrValueList.name").size(10)).build())
                                 .build()).build()).build();
-        nativeQueryBuilder.withAggregation("allAttrValues",aggregation);
+        nativeQueryBuilder.withAggregation("allAttrValues", aggregation);
         NativeQuery nativeQuery = nativeQueryBuilder.build();
         LOGGER.info("DSL:{}", nativeQueryBuilder.getQuery().toString());
         SearchHits<EsProduct> searchHits = elasticsearchTemplate.search(nativeQuery, EsProduct.class);
@@ -249,7 +249,7 @@ public class EsProductServiceImpl implements EsProductService {
         ElasticsearchAggregation brandNames = esAggregationMap.get("brandNames");
         List<String> brandNameList = new ArrayList<>();
         List<StringTermsBucket> brandNameBuckets = ((StringTermsAggregate) brandNames.aggregation().getAggregate()._get()).buckets().array();
-        for(int i = 0; i<brandNameBuckets.size(); i++){
+        for (int i = 0; i < brandNameBuckets.size(); i++) {
             brandNameList.add(brandNameBuckets.get(i).key().stringValue());
         }
         productRelatedInfo.setBrandNames(brandNameList);
@@ -257,7 +257,7 @@ public class EsProductServiceImpl implements EsProductService {
         ElasticsearchAggregation productCategoryNames = esAggregationMap.get("productCategoryNames");
         List<String> productCategoryNameList = new ArrayList<>();
         List<StringTermsBucket> productCategoryNameBuckets = ((StringTermsAggregate) productCategoryNames.aggregation().getAggregate()._get()).buckets().array();
-        for(int i = 0; i<productCategoryNameBuckets.size(); i++){
+        for (int i = 0; i < productCategoryNameBuckets.size(); i++) {
             productCategoryNameList.add(productCategoryNameBuckets.get(i).key().stringValue());
         }
         productRelatedInfo.setProductCategoryNames(productCategoryNameList);
@@ -275,7 +275,7 @@ public class EsProductServiceImpl implements EsProductService {
                 attrValueList.add(attrValue.key().stringValue());
             }
             attr.setAttrValues(attrValueList);
-            if(!CollectionUtils.isEmpty(attrNames)){
+            if (!CollectionUtils.isEmpty(attrNames)) {
                 String attrName = attrNames.get(0).key().stringValue();
                 attr.setAttrName(attrName);
             }
