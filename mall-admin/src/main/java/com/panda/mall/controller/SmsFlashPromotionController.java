@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * 限时购活动管理Controller
- * Created by macro on 2018/11/16.
+ * Created by panda on 2018/11/16.
  */
 @Controller
 @Tag(name = "SmsFlashPromotionController", description = "限时购活动管理")

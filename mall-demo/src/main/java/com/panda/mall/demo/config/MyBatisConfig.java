@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MyBatis相关配置
- * Created by macro on 2019/4/8.
+ * Created by panda on 2019/4/8.
  */
 @Configuration
-@MapperScan("com.macro.mall.mapper")
+@MapperScan("com.panda.mall.mapper")
 public class MyBatisConfig {
 }

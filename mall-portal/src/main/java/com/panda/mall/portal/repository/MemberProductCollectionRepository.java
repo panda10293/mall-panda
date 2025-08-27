@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * 商品收藏Repository
- * Created by macro on 2018/8/2.
+ * Created by panda on 2018/8/2.
  */
 public interface MemberProductCollectionRepository extends MongoRepository<MemberProductCollection,String> {
     MemberProductCollection findByMemberIdAndProductId(Long memberId, Long productId);

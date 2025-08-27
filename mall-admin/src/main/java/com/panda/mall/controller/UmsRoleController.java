@@ -2,7 +2,7 @@ package com.panda.mall.controller;
 
 import com.panda.mall.common.api.CommonPage;
 import com.panda.mall.common.api.CommonResult;
-import com.macro.mall.model.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.UmsMenu;
 import com.panda.mall.model.UmsResource;
 import com.panda.mall.service.UmsRoleService;
@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * 后台用户角色管理
- * Created by macro on 2018/9/30.
+ * Created by panda on 2018/9/30.
  */
 @Controller
 @Tag(name = "UmsRoleController", description = "后台用户角色管理")

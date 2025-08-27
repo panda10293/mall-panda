@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 限时购场次管理Controller
- * Created by macro on 2018/11/16.
+ * Created by panda on 2018/11/16.
  */
 @Controller
 @Tag(name = "SmsFlashPromotionSessionController", description = "限时购场次管理")

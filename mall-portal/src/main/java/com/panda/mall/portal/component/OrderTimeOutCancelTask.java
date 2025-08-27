@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
 /**
- * Created by macro on 2018/8/24.
+ * Created by panda on 2018/8/24.
  * 订单超时取消并解锁库存的定时器
  */
 //@Component

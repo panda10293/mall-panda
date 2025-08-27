@@ -5,7 +5,7 @@ import com.panda.mall.dao.UmsRoleDao;
 import com.panda.mall.mapper.UmsRoleMapper;
 import com.panda.mall.mapper.UmsRoleMenuRelationMapper;
 import com.panda.mall.mapper.UmsRoleResourceRelationMapper;
-import com.macro.mall.model.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.*;
 import com.panda.mall.service.UmsResourceService;
 import com.panda.mall.service.UmsRoleService;
@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * 后台角色管理Service实现类
- * Created by macro on 2018/9/30.
+ * Created by panda on 2018/9/30.
  */
 @Service
 public class UmsRoleServiceImpl implements UmsRoleService {

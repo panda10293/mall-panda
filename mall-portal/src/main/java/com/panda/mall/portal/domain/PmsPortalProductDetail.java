@@ -1,6 +1,5 @@
 package com.panda.mall.portal.domain;
 
-import com.macro.mall.model.*;
 import com.panda.mall.model.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -10,7 +9,7 @@ import java.util.List;
 
 /**
  * 前台商品详情
- * Created by macro on 2020/4/6.
+ * Created by panda on 2020/4/6.
  */
 @Getter
 @Setter

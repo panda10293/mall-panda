@@ -16,28 +16,28 @@
 
 ### 启动注册中心`mall-registory`
 
-- 直接运行com.macro.mall.MallRegistryApplication的main函数即可；
+- 直接运行com.panda.mall.MallRegistryApplication的main函数即可；
 - 运行完成后可以通过注册中心控制台查看：http://localhost:8001
 
 ### 启动配置中心`mall-config`
 
-- 直接运行com.macro.mall.MallConfigApplication的main函数即可；
+- 直接运行com.panda.mall.MallConfigApplication的main函数即可；
 - 访问以下接口获取mall-admin在dev环境下的配置信息：http://localhost:8301/master/admin-dev.yml
 
 ### 启动监控中心`mall-monitor`
 
-- 直接运行com.macro.mall.MallMonitorApplication的main函数即可；
+- 直接运行com.panda.mall.MallMonitorApplication的main函数即可；
 - 运行完成后可以通过监控中心控制台查看：http://localhost:8101
-- 输入账号密码`macro:123456`可以登录查看。
+- 输入账号密码`panda:123456`可以登录查看。
 
 ### 启动网关服务`mall-gateway`
 
-- 直接运行com.macro.mall.MallGatewayApplication的main函数即可；
+- 直接运行com.panda.mall.MallGatewayApplication的main函数即可；
 - 访问以下接口获取动态路由规则：http://localhost:8201/actuator/gateway/routes
 
 ### 启动后台管理服务`mall-admin`
 
-- 直接运行com.macro.mall.MallAdminApplication的main函数即可；
+- 直接运行com.panda.mall.MallAdminApplication的main函数即可；
 - 通过`mall-gateway`网关服务访问接口文档：http://localhost:8201/mall-admin/swagger-ui.html
 
 ![](../resource/mall_swarm_windows_06.png)
@@ -49,7 +49,7 @@
 
 ### 启动前台服务`mall-portal`
 
-- 直接运行com.macro.mall.portal.MallPortalApplication的main函数即可；
+- 直接运行com.panda.mall.portal.MallPortalApplication的main函数即可；
 - 通过`mall-gateway`网关服务访问接口文档：http://localhost:8201/mall-portal/swagger-ui.html
 
 ![](../resource/mall_swarm_windows_07.png)
@@ -59,14 +59,14 @@
 
 ### 启动搜索服务`mall-search`
 
-- 直接运行com.macro.mall.search.MallSearchApplication的main函数即可；
+- 直接运行com.panda.mall.search.MallSearchApplication的main函数即可；
 - 通过`mall-gateway`网关服务访问接口文档：http://localhost:8201/mall-search/swagger-ui.html
 
 ![](../resource/mall_swarm_windows_10.png)
 
 ### 启动测试服务`mall-demo`
 
-- 直接运行com.macro.mall.MallAdminApplication的main函数即可；
+- 直接运行com.panda.mall.MallAdminApplication的main函数即可；
 - 通过`mall-gateway`网关服务访问接口文档：http://localhost:8201/mall-demo/swagger-ui.html
 
 ![](../resource/mall_swarm_windows_08.png)

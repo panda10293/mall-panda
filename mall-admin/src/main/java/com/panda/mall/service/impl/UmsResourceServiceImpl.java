@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.panda.mall.common.constant.AuthConstant;
 import com.panda.mall.common.service.RedisService;
 import com.panda.mall.mapper.UmsResourceMapper;
-import com.macro.mall.model.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.UmsResource;
 import com.panda.mall.model.UmsResourceExample;
 import com.panda.mall.service.UmsResourceService;
@@ -17,7 +17,7 @@ import java.util.*;
 
 /**
  * 后台资源管理Service实现类
- * Created by macro on 2020/2/2.
+ * Created by panda on 2020/2/2.
  */
 @Service
 public class UmsResourceServiceImpl implements UmsResourceService {

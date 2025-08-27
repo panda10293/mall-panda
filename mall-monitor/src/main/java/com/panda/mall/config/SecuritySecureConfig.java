@@ -76,7 +76,7 @@ public class SecuritySecureConfig {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.withUsername("macro")
+        UserDetails user = User.withUsername("panda")
                 .password(passwordEncoder.encode("123456"))
                 .roles("USER")
                 .build();

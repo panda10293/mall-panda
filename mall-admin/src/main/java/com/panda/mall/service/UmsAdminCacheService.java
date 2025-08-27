@@ -4,7 +4,7 @@ import com.panda.mall.model.UmsAdmin;
 
 /**
  * 后台用户缓存操作类
- * Created by macro on 2020/3/13.
+ * Created by panda on 2020/3/13.
  */
 public interface UmsAdminCacheService {
     /**

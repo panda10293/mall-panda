@@ -6,10 +6,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * MyBatis相关配置
- * Created by macro on 2019/4/8.
+ * Created by panda on 2019/4/8.
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.macro.mall.mapper","com.macro.mall.portal.dao"})
+@MapperScan({"com.panda.mall.mapper","com.panda.mall.portal.dao"})
 public class MyBatisConfig {
 }

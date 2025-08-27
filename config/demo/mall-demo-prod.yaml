@@ -8,6 +8,6 @@ logging:
     path: /var/logs
   level:
     root: info
-    com.macro.mall: info
+    com.panda.mall: info
 logstash:
   host: logstash

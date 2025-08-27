@@ -15,7 +15,7 @@ import com.panda.mall.dto.UpdateAdminPasswordParam;
 import com.panda.mall.mapper.UmsAdminLoginLogMapper;
 import com.panda.mall.mapper.UmsAdminMapper;
 import com.panda.mall.mapper.UmsAdminRoleRelationMapper;
-import com.macro.mall.model.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.*;
 import com.panda.mall.service.UmsAdminCacheService;
 import com.panda.mall.service.UmsAdminService;
@@ -34,7 +34,7 @@ import java.util.*;
 
 /**
  * UmsAdminService实现类
- * Created by macro on 2025/4/26.
+ * Created by panda on 2025/4/26.
  */
 @Service
 public class UmsAdminServiceImpl implements UmsAdminService {

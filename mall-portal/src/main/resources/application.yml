@@ -80,7 +80,7 @@ springdoc:
     enabled: true
   group-configs:
     - group: 'mall-portal'
-      packages-to-scan: com.macro.mall.portal.controller
+      packages-to-scan: com.panda.mall.portal.controller
 sa-token:
   # token名称 (同时也是cookie名称)
   token-name: Authorization
@@ -109,6 +109,6 @@ sa-token:
 logging:
   level:
     root: info
-    com.macro.mall: debug
+    com.panda.mall: debug
 logstash:
   host: 172.16.94.128

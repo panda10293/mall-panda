@@ -3,7 +3,7 @@ package com.panda.mall.service;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import com.panda.mall.dto.UmsAdminParam;
 import com.panda.mall.dto.UpdateAdminPasswordParam;
-import com.macro.mall.model.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.UmsAdmin;
 import com.panda.mall.model.UmsResource;
 import com.panda.mall.model.UmsRole;
@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 后台管理员Service
- * Created by macro on 2018/4/26.
+ * Created by panda on 2018/4/26.
  */
 public interface UmsAdminService {
     /**

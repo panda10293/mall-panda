@@ -3,7 +3,7 @@ package com.panda.mall.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.panda.mall.dto.UmsMenuNode;
 import com.panda.mall.mapper.UmsMenuMapper;
-import com.macro.mall.model.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.UmsMenu;
 import com.panda.mall.model.UmsMenuExample;
 import com.panda.mall.service.UmsMenuService;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 /**
  * 后台菜单管理Service实现类
- * Created by macro on 2020/2/2.
+ * Created by panda on 2020/2/2.
  */
 @Service
 public class UmsMenuServiceImpl implements UmsMenuService {

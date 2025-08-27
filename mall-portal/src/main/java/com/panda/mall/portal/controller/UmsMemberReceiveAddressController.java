@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * 会员收货地址管理Controller
- * Created by macro on 2018/8/28.
+ * Created by panda on 2018/8/28.
  */
 @Controller
 @Tag(name = "UmsMemberReceiveAddressController", description = "会员收货地址管理")

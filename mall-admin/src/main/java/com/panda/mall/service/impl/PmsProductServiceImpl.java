@@ -2,12 +2,9 @@ package com.panda.mall.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
-import com.macro.mall.dao.*;
 import com.panda.mall.dto.PmsProductParam;
 import com.panda.mall.dto.PmsProductQueryParam;
 import com.panda.mall.dto.PmsProductResult;
-import com.macro.mall.mapper.*;
-import com.macro.mall.model.*;
 import com.panda.mall.model.*;
 import com.panda.mall.service.PmsProductService;
 import com.panda.mall.dao.*;
@@ -28,7 +25,7 @@ import java.util.stream.Collectors;
 
 /**
  * 商品管理Service实现类
- * Created by macro on 2018/4/26.
+ * Created by panda on 2018/4/26.
  */
 @Service
 public class PmsProductServiceImpl implements PmsProductService {

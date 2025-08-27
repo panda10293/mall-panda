@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * 商品属性管理Controller
- * Created by macro on 2018/4/26.
+ * Created by panda on 2018/4/26.
  */
 @Controller
 @Tag(name = "PmsProductAttributeController", description = "商品属性管理")

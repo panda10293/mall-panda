@@ -2,7 +2,6 @@ package com.panda.mall.controller;
 
 import com.panda.mall.common.api.CommonPage;
 import com.panda.mall.common.api.CommonResult;
-import com.macro.mall.dto.*;
 import com.panda.mall.model.OmsOrder;
 import com.panda.mall.service.OmsOrderService;
 
@@ -17,7 +16,7 @@ import java.util.List;
 
 /**
  * 订单管理Controller
- * Created by macro on 2018/10/11.
+ * Created by panda on 2018/10/11.
  */
 @Controller
 @Tag(name = "OmsOrderController", description = "订单管理")

@@ -8,7 +8,6 @@ import com.panda.mall.dto.PmsProductCategoryWithChildrenItem;
 import com.panda.mall.mapper.PmsProductCategoryAttributeRelationMapper;
 import com.panda.mall.mapper.PmsProductCategoryMapper;
 import com.panda.mall.mapper.PmsProductMapper;
-import com.macro.mall.model.*;
 import com.panda.mall.model.*;
 import com.panda.mall.service.PmsProductCategoryService;
 import org.apache.commons.collections.CollectionUtils;
@@ -21,7 +20,7 @@ import java.util.List;
 
 /**
  * PmsProductCategoryService实现类
- * Created by macro on 2018/4/26.
+ * Created by panda on 2018/4/26.
  */
 @Service
 public class PmsProductCategoryServiceImpl implements PmsProductCategoryService {

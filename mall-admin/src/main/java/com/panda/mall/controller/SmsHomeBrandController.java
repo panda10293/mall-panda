@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 首页品牌管理Controller
- * Created by macro on 2018/11/6.
+ * Created by panda on 2018/11/6.
  */
 @Controller
 @Tag(name = "SmsHomeBrandController", description = "首页品牌管理")

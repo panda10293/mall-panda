@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Created by macro on 2019/10/18.
+ * Created by panda on 2019/10/18.
  */
 @FeignClient("mall-portal")
 public interface FeignPortalService {

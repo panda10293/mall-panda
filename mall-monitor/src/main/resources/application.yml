@@ -5,7 +5,7 @@ spring:
     active: dev
   security: # 配置登录用户名和密码
     user:
-      name: macro
+      name: panda
       password: 123456
   boot:  # 不显示admin-server的监控信息
     admin:

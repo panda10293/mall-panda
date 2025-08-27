@@ -1,6 +1,5 @@
 package com.panda.mall.service;
 
-import com.macro.mall.dto.*;
 import com.panda.mall.model.OmsOrder;
 import com.panda.mall.dto.*;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +8,7 @@ import java.util.List;
 
 /**
  * 订单管理Service
- * Created by macro on 2018/10/11.
+ * Created by panda on 2018/10/11.
  */
 public interface OmsOrderService {
     /**

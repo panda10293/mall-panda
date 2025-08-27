@@ -3,8 +3,6 @@ package com.panda.mall.portal.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
-import com.macro.mall.mapper.*;
-import com.macro.mall.model.*;
 import com.panda.mall.mapper.*;
 import com.panda.mall.portal.dao.PortalProductDao;
 import com.panda.mall.portal.domain.PmsPortalProductDetail;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  * 前台订单管理Service实现类
- * Created by macro on 2020/4/6.
+ * Created by panda on 2020/4/6.
  */
 @Service
 public class PmsPortalProductServiceImpl implements PmsPortalProductService {

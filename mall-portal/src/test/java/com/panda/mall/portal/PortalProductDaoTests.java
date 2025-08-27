@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Created by macro on 2018/8/27.
+ * Created by panda on 2018/8/27.
  * 前台商品查询逻辑单元测试
  */
 @SpringBootTest

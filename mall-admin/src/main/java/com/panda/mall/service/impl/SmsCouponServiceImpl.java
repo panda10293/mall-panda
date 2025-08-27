@@ -8,7 +8,7 @@ import com.panda.mall.dto.SmsCouponParam;
 import com.panda.mall.mapper.SmsCouponMapper;
 import com.panda.mall.mapper.SmsCouponProductCategoryRelationMapper;
 import com.panda.mall.mapper.SmsCouponProductRelationMapper;
-import com.macro.mall.model.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.*;
 import com.panda.mall.service.SmsCouponService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * 优惠券管理Service实现类
- * Created by macro on 2018/8/28.
+ * Created by panda on 2018/8/28.
  */
 @Service
 public class SmsCouponServiceImpl implements SmsCouponService {

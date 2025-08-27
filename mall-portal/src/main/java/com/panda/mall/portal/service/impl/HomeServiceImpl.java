@@ -1,8 +1,6 @@
 package com.panda.mall.portal.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.macro.mall.mapper.*;
-import com.macro.mall.model.*;
 import com.panda.mall.model.*;
 import com.panda.mall.portal.dao.HomeDao;
 import com.panda.mall.portal.domain.FlashPromotionProduct;
@@ -20,7 +18,7 @@ import java.util.List;
 
 /**
  * 首页内容管理Service实现类
- * Created by macro on 2019/1/28.
+ * Created by panda on 2019/1/28.
  */
 @Service
 public class HomeServiceImpl implements HomeService {

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 会员管理Service
- * Created by macro on 2018/8/3.
+ * Created by panda on 2018/8/3.
  */
 public interface UmsMemberService {
     /**

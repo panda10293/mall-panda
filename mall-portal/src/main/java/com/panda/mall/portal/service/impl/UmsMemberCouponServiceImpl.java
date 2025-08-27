@@ -2,8 +2,8 @@ package com.panda.mall.portal.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.panda.mall.common.exception.Asserts;
-import com.macro.mall.mapper.*;
-import com.macro.mall.model.*;
+import com.panda.mall.mapper.*;
+import com.panda.mall.model.*;
 import com.panda.mall.model.*;
 import com.panda.mall.portal.dao.SmsCouponHistoryDao;
 import com.panda.mall.portal.domain.CartPromotionItem;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 /**
  * 会员优惠券管理Service实现类
- * Created by macro on 2018/8/29.
+ * Created by panda on 2018/8/29.
  */
 @Service
 public class UmsMemberCouponServiceImpl implements UmsMemberCouponService {

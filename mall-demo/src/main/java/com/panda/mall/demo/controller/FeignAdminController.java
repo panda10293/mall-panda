@@ -1,7 +1,7 @@
 package com.panda.mall.demo.controller;
 
 /**
- * Created by macro on 2019/10/18.
+ * Created by panda on 2019/10/18.
  */
 
 import com.panda.mall.common.api.CommonResult;
