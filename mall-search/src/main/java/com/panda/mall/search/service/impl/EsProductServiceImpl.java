@@ -52,6 +52,15 @@ public class EsProductServiceImpl implements EsProductService {
     }
 
     @Override
+    public EsProduct importProductById(Long id) {
+        EsProduct esProduct = productDao.getAllEsProductList(id).get(0);
+        if (esProduct != null) {
+            return productRepository.save(esProduct);
+        }
+        return null;
+    }
+
+    @Override
     public void delete(Long id) {
         productRepository.deleteById(id);
     }

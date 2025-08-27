@@ -17,6 +17,11 @@ public interface EsProductService {
     int importAll();
 
     /**
+     * 导入指定商品到ES
+     */
+    EsProduct importProductById(Long id);
+
+    /**
      * 根据id删除商品
      */
     void delete(Long id);
