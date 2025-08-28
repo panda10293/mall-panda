@@ -1,6 +1,6 @@
 package com.panda.mall.portal.config;
 
-import com.panda.mall.portal.domain.QueueEnum;
+import com.panda.mall.common.domain.QueueEnum;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

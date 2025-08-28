@@ -1,6 +1,6 @@
 package com.panda.mall.portal.component;
 
-import com.panda.mall.portal.domain.QueueEnum;
+import com.panda.mall.common.domain.QueueEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpException;
