@@ -45,6 +45,16 @@ public class OmsPortalOrderController {
         return CommonResult.success(result, "下单成功");
     }
 
+    @Operation(summary = "秒杀下单")
+    @RequestMapping(value = "/seckill", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult seckillGenerateOrder(@RequestParam Long productId, @RequestParam Long skuId) {
+        if (portalOrderService.seckillGenerateOrder(productId, skuId)) {
+            return CommonResult.success("秒杀成功");
+        }
+        return CommonResult.success("秒杀失败");
+    }
+
     @Operation(summary = "用户支付成功的回调")
     @RequestMapping(value = "/paySuccess", method = RequestMethod.POST)
     @ResponseBody

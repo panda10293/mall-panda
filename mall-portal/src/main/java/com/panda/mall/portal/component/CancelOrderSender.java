@@ -20,9 +20,9 @@ public class CancelOrderSender {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    public void sendMessage(Long orderId,final long delayTimes){
+    public void sendMessage(Object a, final long delayTimes){
         //给延迟队列发送消息
-        amqpTemplate.convertAndSend(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getExchange(), QueueEnum.QUEUE_TTL_ORDER_CANCEL.getRouteKey(), orderId, new MessagePostProcessor() {
+        amqpTemplate.convertAndSend(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getExchange(), QueueEnum.QUEUE_TTL_ORDER_CANCEL.getRouteKey(), a, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
                 //给消息设置延迟毫秒值
@@ -30,6 +30,6 @@ public class CancelOrderSender {
                 return message;
             }
         });
-        LOGGER.info("send orderId:{}",orderId);
+        LOGGER.info("send orderId:{}", a);
     }
 }

@@ -29,6 +29,14 @@ spring:
             - Path=/mall-portal/**
           filters:
             - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                # 使用我们上面定义的Bean
+                key-resolver: '#{@userKeyResolver}'
+                # 令牌桶每秒填充速率
+                redis-rate-limiter.replenishRate: 1
+                # 令牌桶总容量
+                redis-rate-limiter.burstCapacity: 2
         - id: mall-search
           uri: lb://mall-search
           predicates:

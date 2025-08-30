@@ -4,6 +4,8 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
 import com.panda.mall.common.api.CommonPage;
+import com.panda.mall.common.api.CommonResult;
+import com.panda.mall.common.dto.SeckillOrderMessage;
 import com.panda.mall.common.exception.Asserts;
 import com.panda.mall.common.service.RedisService;
 import com.panda.mall.mapper.*;
@@ -65,6 +67,22 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     private OmsOrderItemMapper orderItemMapper;
     @Autowired
     private CancelOrderSender cancelOrderSender;
+    @Autowired
+    private UmsMemberService umsMemberService;
+
+    private static final String SECKILL_STOCK_KEY_PREFIX = "seckill:stock:";
+
+    // Lua 脚本，用于原子性地检查和扣减库存
+    // KEYS[1]: 库存key, ARGV[1]: 扣减数量 (这里是1)
+    private static final String SECKILL_LUA_SCRIPT =
+            "if redis.call('exists', KEYS[1]) == 1 then\n" +
+                    "    local stock = tonumber(redis.call('get', KEYS[1]))\n" +
+                    "    if stock > 0 and stock >= tonumber(ARGV[1]) then\n" +
+                    "        return redis.call('decrby', KEYS[1], ARGV[1])\n" +
+                    "    end\n" +
+                    "    return -1\n" + // 库存不足
+                    "end\n" +
+                    "return -2"; // 秒杀未开始或已结束 (key不存在)
 
     @Override
     public ConfirmOrderResult generateConfirmOrder(List<Long> cartIds) {
@@ -247,6 +265,32 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         result.put("order", order);
         result.put("orderItemList", orderItemList);
         return result;
+    }
+
+    @Override
+    public boolean seckillGenerateOrder(Long productId, Long skuId) {
+        // 1. 获取当前登录用户
+        UmsMember currentMember = umsMemberService.getCurrentMember();
+
+        // 2. 执行Lua脚本预扣库存
+        String stockKey = SECKILL_STOCK_KEY_PREFIX + skuId;
+        Long result = redisService.executeLua(SECKILL_LUA_SCRIPT,
+                Collections.singletonList(stockKey),
+                1); // 每次扣减1个
+
+        if (result == null || result < 0) {
+            if (result == -1) return false;
+            if (result == -2) return false;
+            return false;
+        }
+
+        // 3. 预扣成功，发送异步下单消息到MQ
+        SeckillOrderMessage message = new SeckillOrderMessage(currentMember.getId(), productId, skuId);
+
+        // 这里需要一个专门的队列来处理秒杀订单，我们暂时复用CancelOrderSender的队列
+        // 实际项目建议为秒杀单独创建队列
+        cancelOrderSender.sendMessage(message, 0); // 0表示立即发送
+        return true;
     }
 
     @Override

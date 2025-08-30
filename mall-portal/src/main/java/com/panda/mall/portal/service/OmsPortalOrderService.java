@@ -26,6 +26,11 @@ public interface OmsPortalOrderService {
     Map<String, Object> generateOrder(OrderParam orderParam);
 
     /**
+     * 秒杀下单
+     */
+    boolean seckillGenerateOrder(Long productId, Long skuId);
+
+    /**
      * 支付成功后的回调
      */
     @Transactional

@@ -3,6 +3,7 @@ package com.panda.mall.common.service.impl;
 import com.panda.mall.common.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 
 import java.util.List;
 import java.util.Map;
@@ -193,5 +194,11 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public Long lRemove(String key, long count, Object value) {
         return redisTemplate.opsForList().remove(key, count, value);
+    }
+
+    @Override
+    public Long executeLua(String script, List<String> keys, Object... args) {
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>(script, Long.class);
+        return redisTemplate.execute(redisScript, keys, args);
     }
 }
